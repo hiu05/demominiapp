@@ -1,0 +1,96 @@
+@import '../node_modules/antd/dist/antd.css';
+
+:root {
+  --primary-color: #000000;
+  --secondary-color: #2CBBD7;
+  --tertiary-color: #faad14;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  background-color: #fff;
+  height: 100vh;
+  overflow: auto;
+  font-family: 'Noto Sans', sans-serif;
+  padding: 80px 20px 60px;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.ant-btn {
+  border-radius: 1rem;
+
+  &.ant-btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+
+    &:hover,
+    &:focus {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+
+  &:not(.ant-btn-danger) {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+  
+    &:hover,
+    &:focus {
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
+    }
+  }
+}
+
+.ant-btn-lg {
+  height: 46px;
+}
+
+.pane {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    margin: 0 auto 60px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    text-align: center;
+    align-content: center;
+  }
+}
+
+.show-logs-button {
+  position: absolute;
+  top: 82px;
+  left: 20px;
+  z-index: 100;
+}

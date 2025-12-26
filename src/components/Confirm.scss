@@ -1,0 +1,57 @@
+
+.confirm {
+  background-color: rgba(0, 0, 0, .6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  &-modal {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px 26px;
+    text-align: center;
+
+    h3,
+    p {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h3 {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #BDC1C5;
+      margin-bottom: 30px;
+    }
+
+    &__close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+
+      svg {
+        fill: #e0e0e0;
+      }
+    }
+
+    &__icon {
+      text-align: center;
+      margin: 14px 0 30px;
+    }
+  }
+}
