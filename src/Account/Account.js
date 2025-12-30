@@ -29,7 +29,7 @@ const Account = () => {
   React.useEffect(() => {
     appboxoSDK.send('AppBoxoWebAppInit');
   },[])
-  
+
   const handleLogin = async () => {
     try {
       updateLogs({
@@ -48,7 +48,7 @@ const Account = () => {
 
       setLoginResponseStatus(LOGIN_SUCCESS)
     } catch (error) {
-      console.log(error)
+      console.log('error:', error)
 
       updateLogs({
         action: 'LOGIN_TO_DASHBOARD',
