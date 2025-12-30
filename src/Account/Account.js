@@ -24,9 +24,12 @@ const Account = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [loginResponseStatus, setLoginResponseStatus] = useState(LOGIN_NONE)
-  
-  appboxoSDK.send('AppBoxoWebAppInit');
 
+  
+  React.useEffect(() => {
+    appboxoSDK.send('AppBoxoWebAppInit');
+  },[])
+  
   const handleLogin = async () => {
     try {
       updateLogs({
