@@ -11,6 +11,7 @@ import { Button } from 'antd'
 
 
 import './Account.scss'
+import appboxoSDK from '@appboxo/js-sdk';
 
 const LOGIN_SUCCESS = 'success'
 const LOGIN_FAILED = 'error'
@@ -23,6 +24,8 @@ const Account = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [loginResponseStatus, setLoginResponseStatus] = useState(LOGIN_NONE)
+  
+  appboxoSDK.send('AppBoxoWebAppInit');
 
   const handleLogin = async () => {
     try {
