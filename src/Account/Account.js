@@ -30,7 +30,7 @@ const Account = () => {
         action: 'LOGIN_TO_DASHBOARD',
         message: 'request sent',
       })
-      const token = await appboxoSdk.login()
+      const {token} = await appboxoSdk.login()
 
       setLoginStatus(true)
 

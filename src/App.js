@@ -28,29 +28,27 @@ function App() {
   useEffect(() => {
     console.log('Getting data')
     // Get initial app data
-    appboxoSdk.getInitData()
-      .then((appData) => {
-        console.log('AppData: ', appData)
-        setLoginStatus(Boolean(appData.token))
+   const initApp = async () => {
+    try {
+      // Wait for getInitData to complete first
+      const appData = await appboxoSdk.getInitData();
+      console.log('AppData: ', appData);
+      setLoginStatus(Boolean(appData.token));
+      
+      localStorage.clear();
+      localStorage.setItem('app_id', appData.app_id);
+      localStorage.setItem('client_id', appData.client_id);
 
-        updateLogs({
-          action: 'AppBoxoWebAppGetInitData',
-          message: 'response received',
-          data: appData
-        })
-        localStorage.clear()
-        localStorage.setItem('app_id', appData.app_id)
-        localStorage.setItem('client_id', appData.client_id)
-      })
-      .catch((error) => {
-        console.log('Error getting web app init data: ', error)
+      // Now you can safely use other SDK methods
+      appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {
+        color: '#ffffff'
+      });
+    } catch (error) {
+      console.log('Error getting web app init data: ', error);
+    }
+  };
 
-        updateLogs({
-          action: 'AppBoxoWebAppGetInitData',
-          message: 'request failed',
-          data: error
-        })
-      })
+  initApp();
 
     // Set status bar color
     appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {

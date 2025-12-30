@@ -8,6 +8,7 @@ const AppboxoPay = () => {
 
   const appboxoPaymentStatusHandler = (event) => {
     if (!event.detail) {
+      console.log('No event detail found')
       return;
     }
   
