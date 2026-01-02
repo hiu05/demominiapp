@@ -34,7 +34,9 @@ function App() {
     try {
       // Wait for getInitData to complete first
       const appData = await appboxoSdk.getInitData();
+      const app_data = await appboxoSdk.send('AppBoxoWebAppGetInitData')
       console.log('AppData: ', appData);
+      console.log('app data from sendd: ', app_data)
       setLoginStatus(Boolean(appData.token));
       
       localStorage.clear();
