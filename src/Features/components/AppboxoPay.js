@@ -26,7 +26,7 @@ const AppboxoPay = () => {
       appboxoSdk.unsubscribe(appboxoPaymentStatusHandler)
     }
   }, [])
-
+  
   const showGallery = () => {
     appboxoSdk.send('AppBoxoWebAppPay', {
       amount: 199.00,

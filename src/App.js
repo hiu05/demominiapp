@@ -28,6 +28,8 @@ function App() {
   useEffect(() => {
     console.log('Getting data')
     // Get initial app data
+    appboxoSdk.send('AppBoxoWebAppInit')
+
    const initApp = async () => {
     try {
       // Wait for getInitData to complete first
