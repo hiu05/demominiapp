@@ -12,6 +12,7 @@ const Storage = () => {
   const [clearStatus, setClearStatus] = useState('')
 
   const save = async () => {
+    
     const response = await Promise.all([
       appboxoSdk.sendPromise('AppBoxoWebAppStorageSet', {
         key: 'username',
