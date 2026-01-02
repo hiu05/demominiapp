@@ -43,7 +43,7 @@ function App() {
 
       // Now you can safely use other SDK methods
       appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {
-        color: '#ffffff'
+        color: '#9191ffff'
       });
     } catch (error) {
       console.log('Error getting web app init data: ', error);
