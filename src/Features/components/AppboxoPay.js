@@ -8,7 +8,7 @@ const { Text } = Typography;
 
 const AppboxoPay = () => {
   const [response, setResponse] = useState('')
-  const { updateLogs } = React.usecontext(LoggerContext)
+  const { updateLogs } = React.useContext(LoggerContext)
 
   const appboxoPaymentStatusHandler = (event) => {
     if (!event.detail) {
