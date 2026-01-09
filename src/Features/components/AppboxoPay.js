@@ -20,10 +20,10 @@ const AppboxoPay = () => {
         message: 'request sent',
         data: event
     })
-    const { type, data } = event.detail;
+    const { type } = event.detail;
   
     if (type === 'AppBoxoWebAppPay') {
-      setResponse(data.status)
+      setResponse(event)
     }
   }
 
@@ -52,13 +52,13 @@ const AppboxoPay = () => {
       }
     )
     //gọi 
-    const payResult = appboxoSdk.pay({paymentData:{
+    const payResult = appboxoSdk.pay({
       amount: order.amount,
       miniappOrderId: order.id,
       currency: order.currency,
       transactionToken: order.orderPaymentId,
       extraParams: {}
-    }}).json()
+    })
  
     updateLogs({
       action: 'Payment callddd', 
