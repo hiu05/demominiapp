@@ -20,7 +20,6 @@ function App() {
   const [loginStatus, setLoginStatus] = useState(false)
   const [logsVisibility, setLogsVisibility] = useState(false)
   const [logs, setLogs] = useState([])
-
   const updateLogs = (newLog) => {
     setLogs([...logs, newLog])
   }
@@ -33,7 +32,7 @@ function App() {
    const initApp = async () => {
     try {
       // Wait for getInitData to complete first
-      const appData = await appboxoSdk.getInitData();
+      const appData = await appboxoSdk.getInitData()
       const app_data = await appboxoSdk.send('AppBoxoWebAppGetInitData')
       console.log('AppData: ', appData);
       console.log('app data from sendd: ', app_data)
