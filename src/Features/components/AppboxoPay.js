@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import appboxoSdk from '@appboxo/js-sdk'
 import { Card, Button, Typography } from 'antd'
-import LoggerContext from '../LoggerContext.js'
+import LoggerContext from '../../LoggerContext.js'
 import { message } from 'antd'
 
 const { Text } = Typography;
