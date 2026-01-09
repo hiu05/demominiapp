@@ -61,7 +61,7 @@ const AppboxoPay = () => {
     }}).json()
  
     updateLogs({
-      action: 'Payment call', 
+      action: 'Payment callddd', 
       message: 'request sent',
       data: payResult
     })
