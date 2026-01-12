@@ -29,29 +29,29 @@ function App() {
     // Get initial app data
     appboxoSdk.send('AppBoxoWebAppInit')
 
-   const initApp = async () => {
-    try {
-      // Wait for getInitData to complete first
-      const appData = await appboxoSdk.getInitData()
-      const app_data = await appboxoSdk.send('AppBoxoWebAppGetInitData')
-      console.log('AppData: ', appData);
-      console.log('app data from sendd: ', app_data)
-      setLoginStatus(Boolean(appData.token));
-      
-      localStorage.clear();
-      localStorage.setItem('app_id', appData.app_id);
-      localStorage.setItem('client_id', appData.client_id);
+    const initApp = async () => {
+      try {
+        // Wait for getInitData to complete first
+        const appData = await appboxoSdk.getInitData()
+        setLoginStatus(Boolean(appData.token));
 
-      // Now you can safely use other SDK methods
-      appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {
-        color: '#9191ffff'
-      });
-    } catch (error) {
-      console.log('Error getting web app init data: ', error);
-    }
-  };
+        localStorage.clear();
+        localStorage.setItem('app_id', appData.app_id);
+        localStorage.setItem('client_id', appData.client_id);
+        updateLogs({
+          action: 'AppBoxoWebAppGetInitData',
+          message: 'request sent', data: appData
+        })
+        // Now you can safely use other SDK methods
+        appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {
+          color: '#9191ffff'
+        });
+      } catch (error) {
+        console.log('Error getting web app init data: ', error);
+      }
+    };
 
-  initApp();
+    initApp();
 
     // Set status bar color
     appboxoSdk.send('AppBoxoWebAppSetStatusBarColor', {
@@ -65,7 +65,8 @@ function App() {
       },
       {
         action: 'AppBoxoWebAppGetInitData',
-        message: 'request sent'
+        message: 'request sent',
+
       }
     ]
     setLogs([...logs, ...currentLogs])
@@ -104,7 +105,7 @@ function App() {
           </Router>
         </StoreProvider>
       </LoggerContext.Provider>
-      {logsVisibility && <Logs logs={logs} onClose={() => setLogsVisibility(false)}/>}
+      {logsVisibility && <Logs logs={logs} onClose={() => setLogsVisibility(false)} />}
     </AuthContext.Provider>
   );
 }

@@ -53,6 +53,8 @@ const AppboxoPay = () => {
         })
       }
     )
+    console.log(order);
+    
     //gọi 
     const payResult = appboxoSdk.pay({
       amount: order.amount,
