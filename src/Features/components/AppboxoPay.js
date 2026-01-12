@@ -8,14 +8,6 @@ const { Text } = Typography;
 const AppboxoPay = () => {
   const [response, setResponse] = useState('')
   const { updateLogs } = React.useContext(LoggerContext)
-  const userId = localStorage.getItem('userId')
-  useEffect(() => {
-  updateLogs({
-    action: 'get user id',
-    message: 'user id gettt',
-    data: userId
-  })
-}, [userId, updateLogs])
 
   const appboxoPaymentStatusHandler = (event) => {
     if (!event.detail) {
