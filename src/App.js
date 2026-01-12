@@ -38,6 +38,7 @@ function App() {
         localStorage.clear();
         localStorage.setItem('app_id', appData.app_id);
         localStorage.setItem('client_id', appData.client_id);
+        localStorage.setItem('userId', appData.data.userId)
         updateLogs({
           action: 'AppBoxoWebAppGetInitData',
           message: 'request sent', data: appData

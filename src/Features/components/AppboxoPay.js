@@ -8,7 +8,10 @@ const { Text } = Typography;
 const AppboxoPay = () => {
   const [response, setResponse] = useState('')
   const { updateLogs } = React.useContext(LoggerContext)
-
+  updateLogs({
+    message: 'userid',
+    data: localStorage.getItem('userId')
+  })
   const appboxoPaymentStatusHandler = (event) => {
     if (!event.detail) {
       console.log('No event detail found')
@@ -48,8 +51,11 @@ const AppboxoPay = () => {
         body: JSON.stringify({
           app_id: localStorage.getItem('app_id'),
           client_id: localStorage.getItem('client_id'),
-          amount: formpay.amount,
-          currency: formpay.currency,
+          order: {
+            amount: formpay.amount,
+            currency: formpay.currency,
+          },
+          hostAppUserId: localStorage.getItem('userId')
         })
       }
     )
