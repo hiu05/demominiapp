@@ -86,15 +86,21 @@ const AppboxoPay = () => {
             price: 8.80,
             amount: 1,
             total: 8.80
+          },
+          {
+            name: 'Product 2 name',
+            description: 'Product description',
+            price: 70,
+            amount: 1,
+            total: 70
           }
         ]
       }
     }
+    
     if (payResult.status) {
       await appboxoSdk.track(
-        
-          transaction
-        
+        transaction
       )
     }
 
