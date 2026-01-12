@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import appboxoSdk from '@appboxo/js-sdk'
 import { Card, Button, Typography } from 'antd'
 import LoggerContext from '../../LoggerContext.js'
-import { message } from 'antd'
 
 const { Text } = Typography;
 
@@ -16,12 +15,12 @@ const AppboxoPay = () => {
       return;
     }
     updateLogs({
-        action: 'Payment call',
-        message: 'request sent',
-        data: event
+      action: 'Payment call',
+      message: 'request sent',
+      data: event
     })
     const { type } = event.detail;
-  
+
     if (type === 'AppBoxoWebAppPay') {
       setResponse(event)
     }
@@ -34,8 +33,11 @@ const AppboxoPay = () => {
       appboxoSdk.unsubscribe(appboxoPaymentStatusHandler)
     }
   }, [])
-
-  const showGallery = async () => {  
+  const formpay = {
+    amount: 88,
+    currency: 'usd'
+  }
+  const showGallery = async () => {
     //miniapp tự tạo order + orderpaymentid
     const order = await fetch('https://jemma-indefatigable-tomika.ngrok-free.dev/api/v1/miniappserver/order-payment-id',
       {
@@ -46,8 +48,8 @@ const AppboxoPay = () => {
         body: JSON.stringify({
           app_id: localStorage.getItem('app_id'),
           client_id: localStorage.getItem('client_id'),
-          amount: 199.00,
-          currency: "USD",
+          amount: formpay.amount,
+          currency: formpay.currency,
         })
       }
     )
@@ -59,14 +61,44 @@ const AppboxoPay = () => {
       transactionToken: order.orderPaymentId,
       extraParams: {}
     })
- 
+    const transaction = {
+      action: 'transaction',
+      payload: {
+        shipping: 0,
+        tax: 0.57,
+        discount: 2.25,
+        currency_code: 'USD',
+        customer: { // optional
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'jdoe@domain.com',
+          ip_address: '234.192.4.75'
+        },
+        items: [
+          {
+            name: 'Product name',
+            description: 'Product description',
+            price: 8.80,
+            amount: 1,
+            total: 8.80
+          }
+        ]
+      }
+    }
+    if (payResult.status) {
+      await appboxoSdk.track(
+        {
+          transaction
+        }
+      )
+    }
+
     updateLogs({
-      action: 'Payment callddd', 
+      action: 'Payment callddd',
       message: 'request sent',
       data: payResult
     })
 
-    message.info('Payment request reviced: ' + payResult)
   }
 
   return (
