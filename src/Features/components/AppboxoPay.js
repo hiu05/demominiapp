@@ -63,7 +63,7 @@ const AppboxoPay = () => {
       amount: order.amount,
       miniappOrderId: order.id,
       currency: order.currency,
-      transactionToken: order.orderPaymentId,
+      transactionToken: order.transactionToken,
       extraParams: {}
     })
     const transaction = {
@@ -92,9 +92,9 @@ const AppboxoPay = () => {
     }
     if (payResult.status) {
       await appboxoSdk.track(
-        {
+        
           transaction
-        }
+        
       )
     }
 
