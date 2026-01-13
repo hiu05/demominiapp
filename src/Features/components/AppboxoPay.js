@@ -62,7 +62,7 @@ const AppboxoPay = () => {
       data: order
     })
     //gọi 
-    const payResult = appboxoSdk.pay({
+    const payResult = appboxoSdk.send('AppBoxoWebAppPay',{
       amount: order.amount,
       miniappOrderId: order.id,
       currency: order.currency,
@@ -99,14 +99,14 @@ const AppboxoPay = () => {
             }
           ]
         }
-      }
-    
-    if (payResult.status) {
-      await appboxoSdk.track(
-        transaction
-      )
     }
-
+    
+    
+      await appboxoSdk.track(
+        transaction)
+    
+    
+     
     updateLogs({
       action: 'Payment callddd',
       message: 'request sent',
