@@ -56,47 +56,50 @@ const AppboxoPay = () => {
         })
       }
     )
-    console.log(order);
-    
+    updateLogs({
+      action: 'Payment call',
+      message: 'request sent',
+      data: order
+    })
     //gọi 
     const payResult = appboxoSdk.pay({
       amount: order.amount,
       miniappOrderId: order.id,
       currency: order.currency,
-      transactionToken: order.transactionToken,
+      transactionToken: order.order_payment_id,
       extraParams: {}
     })
     const transaction = {
-      action: 'transaction',
-      payload: {
-        shipping: 0,
-        tax: 0.57,
-        discount: 2.25,
-        currency_code: 'USD',
-        customer: { // optional
-          first_name: 'John',
-          last_name: 'Doe',
-          email: 'jdoe@domain.com',
-          ip_address: '234.192.4.75'
-        },
-        items: [
-          {
-            name: 'Product name',
-            description: 'Product description',
-            price: 8.80,
-            amount: 1,
-            total: 8.80
+        action: 'transaction',
+        payload: {
+          shipping: 5,
+          tax: 0.57,
+          discount: 2.25,
+          currency_code: 'USD',
+          customer: {
+            first_name: 'John',
+            last_name: 'Doe',
+            email: 'jdoe@domain.com',
+            ip_address: '234.192.4.75'
           },
-          {
-            name: 'Product 2 name',
-            description: 'Product description',
-            price: 70,
-            amount: 1,
-            total: 70
-          }
-        ]
+          items: [
+            {
+              name: 'Product1',
+              description: 'Product description',
+              price: 8.80,
+              amount: 1,
+              total: 8.80,
+            },
+            {
+              name: 'Product2',
+              description: 'Product description',
+              price: 70,
+              amount: 1,
+              total: 70,
+            }
+          ]
+        }
       }
-    }
     
     if (payResult.status) {
       await appboxoSdk.track(
