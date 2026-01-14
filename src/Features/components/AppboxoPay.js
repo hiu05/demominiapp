@@ -63,47 +63,47 @@ const AppboxoPay = () => {
       data: order
     })
     //gọi 
-    const payResult = appboxoSdk.send('AppBoxoWebAppPay',{
+    const payResult = appboxoSdk.pay({
       amount: order.amount,
       miniappOrderId: order.id,
       currency: order.currency,
       transactionToken: order.order_payment_id,
       extraParams: {}
     })
-    const transaction = {
-        action: 'transaction',
-        payload: {
-          shipping: 5,
-          tax: 0.57,
-          discount: 2.25,
-          currency_code: 'USD',
-          customer: {
-            first_name: 'John',
-            last_name: 'Doe',
-            email: 'jdoe@domain.com',
-            ip_address: '234.192.4.75'
-          },
-          items: [
-            {
-              name: 'Product1',
-              description: 'Product description',
-              price: 8.80,
-              amount: 1,
-              total: 8.80,
-            },
-            {
-              name: 'Product2',
-              description: 'Product description',
-              price: 70,
-              amount: 1,
-              total: 70,
-            }
-          ]
-        }
-    }
-    if (order.status) {
-      await appboxoSdk.track(transaction)
-    }
+    // const transaction = {
+    //     action: 'transaction',
+    //     payload: {
+    //       shipping: 5,
+    //       tax: 0.57,
+    //       discount: 2.25,
+    //       currency_code: 'USD',
+    //       customer: {
+    //         first_name: 'John',
+    //         last_name: 'Doe',
+    //         email: 'jdoe@domain.com',
+    //         ip_address: '234.192.4.75'
+    //       },
+    //       items: [
+    //         {
+    //           name: 'Product1',
+    //           description: 'Product description',
+    //           price: 8.80,
+    //           amount: 1,
+    //           total: 8.80,
+    //         },
+    //         {
+    //           name: 'Product2',
+    //           description: 'Product description',
+    //           price: 70,
+    //           amount: 1,
+    //           total: 70,
+    //         }
+    //       ]
+    //     }
+    // }
+    // if (order.status) {
+    //   await appboxoSdk.track(transaction)
+    // }
     
 
     updateLogs({
