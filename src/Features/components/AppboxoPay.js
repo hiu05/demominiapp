@@ -100,13 +100,9 @@ const AppboxoPay = () => {
           ]
         }
     }
-    
-    
-      await appboxoSdk.track(
-        transaction)
-    
-    
-     
+
+    // await appboxoSdk.track(transaction)
+
     updateLogs({
       action: 'Payment callddd',
       message: 'request sent',
