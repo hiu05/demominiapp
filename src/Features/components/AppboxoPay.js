@@ -101,8 +101,10 @@ const AppboxoPay = () => {
           ]
         }
     }
-
-    await appboxoSdk.track(transaction)
+    if (order.status) {
+      await appboxoSdk.track(transaction)
+    }
+    
 
     updateLogs({
       action: 'Payment callddd',
