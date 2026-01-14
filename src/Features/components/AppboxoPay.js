@@ -39,7 +39,7 @@ const AppboxoPay = () => {
   }
   const showGallery = async () => {
     //miniapp tự tạo order + orderpaymentid
-    const order = await fetch('https://jemma-indefatigable-tomika.ngrok-free.dev/api/v1/miniappserver/order-payment-id',
+    const res = await fetch('https://jemma-indefatigable-tomika.ngrok-free.dev/api/v1/miniappserver/order-payment-id',
       {
         method: 'POST',
         headers: {
@@ -56,6 +56,7 @@ const AppboxoPay = () => {
         })
       }
     )
+    const order = res.json()
     updateLogs({
       action: 'Payment call',
       message: 'request sent',
@@ -101,7 +102,7 @@ const AppboxoPay = () => {
         }
     }
 
-    // await appboxoSdk.track(transaction)
+    await appboxoSdk.track(transaction)
 
     updateLogs({
       action: 'Payment callddd',
