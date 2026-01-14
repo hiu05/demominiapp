@@ -56,7 +56,7 @@ const AppboxoPay = () => {
         })
       }
     )
-    const order = res.json()
+    const order = await res.json()
     updateLogs({
       action: 'Payment call',
       message: 'request sent',
